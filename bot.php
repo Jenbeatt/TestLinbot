@@ -3,7 +3,7 @@ $access_token = 'SG3JBmTZEAbFxdexsK8JwxrPOle/+IFg/R3TmQKfVIUuJSrcRJOsffKPXXtrEy0
 $Token_anto = 'TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb';
 $keys = 'NodeMCU';
 $Chanel = 'Status';
-$_Status = -1;
+$_Status = true;
 //$access_token = 'iA00aKCsapdGJ2NY1g1W4XIqjaMCYUbVShtwKRb9psC';
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -29,15 +29,8 @@ $event_Status = json_decode($contents, true);
 }
 
 		// Loop through each event	
-		if(!is_null($events['events']) ){
-		foreach ($events['events'] as $event) {
-			// Reply only when message sent is in 'text' format
-			if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-				// Get text sent
-				$text = $event['message']['text'];
-				// Get replyToken
-				$replyToken = $event['replyToken'];				
-				// Build message to reply back						
+		if($_Status == true){
+					
 				$Userid = ["U8b1b238e78d5195aeed5c971023f548f"]	;
 					$messages = [
 					'type' => 'text',
@@ -60,10 +53,9 @@ $event_Status = json_decode($contents, true);
 				$result = curl_exec($ch);
 				curl_close($ch);
 				echo $result . "\r\n";
-
+				$_Status = false;
 			}
-		}
-	}
+
 
 echo "OK";
-echo "<br>".$Url;
+echo "<br>".$result;
