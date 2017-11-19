@@ -55,9 +55,8 @@ if (!is_null($events['events'])) {
 				
 			if(!$_Status == -1){
 				$Get_Status = file_get_contents('https://api.anto.io/channel/set/'. $Token_anto .'/'.$key.'/Status/'.$_Status);
-				$event_Status = json_decode($Get_Status, true);
-				if ($event_Status['result'] == "true") {
-					Check_Status($event_Status['value']);
+	
+					
 			}	
 			
 			// Make a POST Request to Messaging API to reply to sender
