@@ -36,6 +36,10 @@ if (!is_null($events['events'])) {
 						];
 						}
 					}
+					$messages = [
+						'type' => 'text',
+						'text' => ' value'. $event_Status['value'] .' result ' . $event_Status['result']
+						];
 			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 			
 				$messages = [
