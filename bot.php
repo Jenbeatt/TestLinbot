@@ -68,7 +68,7 @@ $event_Status = json_decode($contents, true);
 					'type' => 'text',
 					'text' => 'สถานะ '.$str 
 					];	
-					$messages = [$messages,$messages_Status]
+					$messages = [$messages,$messages_Status];
 				}
 				// Make a POST Request to Messaging API to reply to sender
 				
