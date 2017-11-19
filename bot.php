@@ -38,7 +38,7 @@ $event_Status = json_decode($contents, true);
 				// Get replyToken
 				$replyToken = $event['replyToken'];				
 				// Build message to reply back						
-				$Userid = ["u0963c2f97eb6812ee92d1a2182cc3abd"]	;
+				$Userid = ["U8b1b238e78d5195aeed5c971023f548f"]	;
 					$messages = [
 					'type' => 'text',
 					'text' => 'Test'
