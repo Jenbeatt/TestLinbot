@@ -36,9 +36,9 @@ $event_Status = json_decode($contents, true);
 				// Get text sent
 				$text = $event['message']['text'];
 				// Get replyToken
-				$replyToken = $event['replyToken'];
+				$replyToken = $event['replyToken'];				
 				// Build message to reply back						
-							
+				$Userid = ["u0963c2f97eb6812ee92d1a2182cc3abd"]	;
 					$messages = [
 					'type' => 'text',
 					'text' => 'Test'
@@ -48,7 +48,7 @@ $event_Status = json_decode($contents, true);
 				$url = 'https://api.line.me/v2/bot/message/reply';
 				
 				$data = [
-					 "to" => ["u0963c2f97eb6812ee92d1a2182cc3abd"],				
+					'to' => [$Userid],				
 					'messages' => [$messages],									
 				];
 				$post = json_encode($data);
