@@ -5,8 +5,8 @@ $keys = 'NodeMCU';
 //$access_token = 'iA00aKCsapdGJ2NY1g1W4XIqjaMCYUbVShtwKRb9psC';
 // Get POST body content
 $content = file_get_contents('php://input');
-//$Get_Status = file_get_contents('https://api.anto.io/channel/get/' . $Token_anto . '/' . $key . '/Status');
-$Get_Status = file_get_contents('https://api.anto.io/channel/get/TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb/NodeMCU/Status');
+$Get_Status = file_get_contents('https://api.anto.io/channel/get/' . $Token_anto . '/' . $key . '/Status');
+//$Get_Status = file_get_contents('https://api.anto.io/channel/get/TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb/NodeMCU/Status');
 
 // Parse JSON
 $events = json_decode($content, true);
@@ -34,7 +34,7 @@ if (!is_null($events['events'])) {
 					'text' => 'เปิด'
 					];
 					}
-			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
+			} /*elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 				$_Status = 1
 				$messages = [
 				'type' => 'text',
@@ -47,7 +47,7 @@ if (!is_null($events['events'])) {
 				'text' => 'ปิด เรียบร้อย'
 				];
 					
-			} else {
+			}*/ else {
 				$_Status = -1 
 				$messages = [
 				'type' => 'text',
@@ -56,7 +56,7 @@ if (!is_null($events['events'])) {
 			}
 				
 			if (!$_Status == -1) {
-				//$Get_Status = file_get_contents('https://api.anto.io/channel/set/'. $Token_anto .'/'.$key.'/Status/'.$_Status);
+			   $Get_Status = file_get_contents('https://api.anto.io/channel/set/'. $Token_anto .'/'.$key.'/Status/'.$_Status);
 	
 					
 			}	
