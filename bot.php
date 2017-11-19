@@ -31,7 +31,7 @@ if (!is_null($events['events'])) {
 					else{
 					$messages = [
 					'type' => 'text',
-					'text' => 'เปิด'.$event_Status['result'].$events['events']['type']//$event_Status['events']['value'];
+					'text' => 'เปิด'.$event_Status['value'].$event_Status['result']//$event_Status['events']['value'];
 					];
 					}						
 							
