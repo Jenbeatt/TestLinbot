@@ -29,6 +29,13 @@ if ($Result == "true"){
 		'text' => 'เปิด'
 		];
 	}
+}else{
+	$messages = [
+	'type' => 'text',
+	'text' => ' Error Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
+	];
+}
+	
 					
 }
 
@@ -43,14 +50,7 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
 			if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){
-				Check_Status($event_Status['result'],$event_Status['value']);				
-			}else{
-				$messages = [
-				'type' => 'text',
-				'text' => ' Error Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
-				];
-			}
-					
+				Check_Status($event_Status['result'],$event_Status['value']);
 			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 				$_Status = 1;
 				$messages = [
