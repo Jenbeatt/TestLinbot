@@ -37,16 +37,16 @@ $event_Status = json_decode($contents, true);
 					'text' => 'Test'
 					];
 				// Make a POST Request to Messaging API to reply to sender				
-				$url = ' https://api.line.me/v2/bot/message/multicast';				
+				$url = 'https://api.line.me/v2/bot/message/push';				
 				$data = [
-					'to' => $Userid,				
+					'to' => 'U8b1b238e78d5195aeed5c971023f548f',				
 					'messages' => [$messages],									
 				];
 				$post = json_encode($data);
 				$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 				$ch = curl_init($url);
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-				//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -54,8 +54,10 @@ $event_Status = json_decode($contents, true);
 				curl_close($ch);
 				echo $result . "\r\n";
 				$_Status = false;
+			
+			echo "OK 1 LOOP";
 			}
 
 
 echo "OK";
-echo "<br>".$result;
+
