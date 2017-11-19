@@ -34,20 +34,20 @@ if (!is_null($events['events'])) {
 					'type' => 'text',
 					'text' => 'เปิด'
 					];
-			}elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
+			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 				$_Status = 1
 				$messages = [
 				'type' => 'text',
 				'text' => 'เปิด เรียบร้อย'
 				];
-			}elseif ($text == strtoupper("OFF") || $text == "ปิด" ) {
+			} elseif ($text == strtoupper("OFF") || $text == "ปิด" ) {
 				$_Status = 0				
 				$messages = [
 				'type' => 'text',
 				'text' => 'ปิด เรียบร้อย'
 				];
 					
-			}else{
+			} else {
 				$_Status = -1 
 				$messages = [
 				'type' => 'text',
