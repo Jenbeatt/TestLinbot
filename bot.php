@@ -39,7 +39,7 @@ if (!is_null($events['events'])) {
 					}else{
 					$messages = [
 						'type' => 'text',
-						'text' => ' Error ' . $Url . 'Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
+						'text' => ' Error Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
 						];
 					}
 			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
@@ -92,3 +92,4 @@ if (!is_null($events['events'])) {
 	}
 }
 echo "OK";
+echo $Url;
