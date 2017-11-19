@@ -21,7 +21,7 @@ if (!is_null($events['events'])) {
 			if($text == "Token"){
 			$messages = [
 			'type' => 'text',
-			'text' => $result
+			'text' => $replyToken
 			];
 			}else{
 			$messages = [
