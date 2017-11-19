@@ -27,7 +27,7 @@ $event_Status = json_decode($contents, true);
 	}
 	return "เออเรอ";		
 }
-function Void_Loop(){
+
 while(true) {
 		$event_Status = json_decode($Get_Status, true);
 		$Old = Check_Status($event_Status['result'],$event_Status['value']);	
@@ -37,7 +37,7 @@ while(true) {
 		}
 		$_Status=  false;
 	}
-}
+
 // Loop through each event	
 		if($_Status){
 					
