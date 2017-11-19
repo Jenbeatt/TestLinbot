@@ -9,6 +9,9 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 	// Loop through each event
+	$th=mktime(gmdate("H")+7,gmdate("i"),gmdate("m"),gmdate("d"),gmdate("Y"));
+	$format="d/m/y H:i a"; 
+	$str=date($format,$th);
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
@@ -18,10 +21,10 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			if($text == "Token"){
+			if($text == "Now"){
 			$messages = [
 			'type' => 'text',
-			'text' => $replyToken
+			'text' => $str
 			];
 			}else{
 			$messages = [
