@@ -16,9 +16,9 @@ $Get_Status = file_get_contents($Url);
 $events = json_decode($content, true);
 $event_Status = json_decode($Get_Status, true);
 // Validate parsed JSON data
-function Check_Status(){
-if ($event_Status['result'] == "true"){
-	if( $event_Status['value'] == "0") {
+function Check_Status($Result,$Value){
+if ($Result == "true"){
+	if( $Value == "0") {
 		$messages = [
 		'type' => 'text',
 		'text' => 'ปิด'
@@ -43,7 +43,7 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
 			if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){
-				Check_Status();				
+				Check_Status($event_Status['result'],$event_Status['value']);				
 			}else{
 				$messages = [
 				'type' => 'text',
@@ -72,7 +72,8 @@ if (!is_null($events['events'])) {
 				
 			if ($_Status > -1) {
 			   	$Get_Status = file_get_contents($Url_Update.$_Status);	
-				Check_Status();
+				$event_Status = json_decode($Get_Status, true);
+				Check_Status($event_Status['result'],$event_Status['value']);
 			}
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
