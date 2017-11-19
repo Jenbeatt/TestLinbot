@@ -34,10 +34,9 @@ function Check_Status($Result,$Value){
 		$messages = [
 		'type' => 'text',
 		'text' => ' Error Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
-		];
-	return false;
+		];	
 	}	
-				
+return false;			
 }
 
 if (!is_null($events['events'])) {
@@ -54,7 +53,7 @@ if (!is_null($events['events'])) {
 				
 				$messages = [
 				'type' => 'text',
-				'text' => 'สถานะ ส่ง = '.Check_Status($event_Status['result'],$event_Status['value']);
+				'text' => 'สถานะ ส่ง = '.Check_Status($event_Status['result'],$event_Status['value'])
 				];	
 			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 				$_Status = 1;
