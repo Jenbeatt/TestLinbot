@@ -16,6 +16,22 @@ $Get_Status = file_get_contents($Url);
 $events = json_decode($content, true);
 $event_Status = json_decode($Get_Status, true);
 // Validate parsed JSON data
+function Check_Status(){
+if ($event_Status['result'] == "true"){
+	if( $event_Status['value'] == "0") {
+		$messages = [
+		'type' => 'text',
+		'text' => 'ปิด'
+		];
+	} else {
+		$messages = [
+		'type' => 'text',
+		'text' => 'เปิด'
+		];
+	}
+					
+}
+
 if (!is_null($events['events'])) {
 	// Loop through each event	
 	foreach ($events['events'] as $event) {
@@ -27,25 +43,14 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
 			if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){
-				
-					if ($event_Status['result'] == "true"){
-						if( $event_Status['value'] == "0") {
-						$messages = [
-						'type' => 'text',
-						'text' => 'ปิด value'.$event_Status['value']//$event_Status['events']['value'];
-						];
-						} else {
-						$messages = [
-						'type' => 'text',
-						'text' => 'เปิด value'.$event_Status['value']
-						];
-						}
-					}else{
-					$messages = [
-						'type' => 'text',
-						'text' => ' Error Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
-						];
-					}
+				Check_Status();				
+			}else{
+				$messages = [
+				'type' => 'text',
+				'text' => ' Error Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
+				];
+			}
+					
 			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 				$_Status = 1;
 				$messages = [
@@ -57,27 +62,18 @@ if (!is_null($events['events'])) {
 				$messages = [
 				'type' => 'text',
 				'text' => 'ปิด เรียบร้อย'
-				];
-					
+				];					
 			}else {				
 				$messages = [
 				'type' => 'text',
-				'text' => 'ไม่โดนเงื่อนไขเหี้ยไรเลย'
-				];
-				
+				'text' => 'กรุณากรอกใหม่...'
+				];				
 			} 
 				
 			if ($_Status > -1) {
 			   	$Get_Status = file_get_contents($Url_Update.$_Status);	
-				$messages = [
-				'type' => 'text',
-				'text' => 'เปลี่ยน'.$Url_Update.$_Status
-				];
-			}	
-			$messages = [
-				'type' => 'text',
-				'text' => 'Status = '.$_Status
-			];
+				Check_Status();
+			}
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
