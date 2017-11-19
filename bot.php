@@ -33,13 +33,13 @@ while(true) {
 		$Old = Check_Status($event_Status['result'],$event_Status['value']);	
 		if (strcmp($Now,$Old)){
 		$Now = $Old ;
-		return true;
+		$_Status= true;
 		}
-		return  false;
+		$_Status=  false;
 	}
 }
 // Loop through each event	
-		if(Void_Loop()){
+		if($_Status){
 					
 				$Userid = 'U8b1b238e78d5195aeed5c971023f548f';
 				$messages = [
@@ -63,7 +63,7 @@ while(true) {
 				$result = curl_exec($ch);
 				curl_close($ch);
 				echo $result . "\r\n";
-				//$_Status = false;
+				$_Status = false;
 			
 			echo "OK 1 LOOP";
 			}
