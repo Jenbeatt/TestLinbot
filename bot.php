@@ -27,19 +27,29 @@ $event_Status = json_decode($contents, true);
 	}
 	return "เออเรอ";		
 }
-
-		// Loop through each event	
-		if($_Status == true){
+function Void_Loop(){
+while(true) {
+		$event_Status = json_decode($Get_Status, true);
+		$Old = Check_Status($event_Status['result'],$event_Status['value']);	
+		if (strcmp($Now,$Old)){
+		$Now = $Old ;
+		return true;
+		}
+		return  false;
+	}
+}
+// Loop through each event	
+		if(Void_Loop()){
 					
-				$Userid = "U8b1b238e78d5195aeed5c971023f548f";
-					$messages = [
-					'type' => 'text',
-					'text' => 'Test'
-					];
+				$Userid = 'U8b1b238e78d5195aeed5c971023f548f';
+				$messages = [
+				'type' => 'text',
+				'text' => Check_Status(file_get_contents($Url))
+				];
 				// Make a POST Request to Messaging API to reply to sender				
 				$url = 'https://api.line.me/v2/bot/message/push';				
 				$data = [
-					'to' => 'U8b1b238e78d5195aeed5c971023f548f',				
+					'to' => $Userid,				
 					'messages' => [$messages],									
 				];
 				$post = json_encode($data);
@@ -53,7 +63,7 @@ $event_Status = json_decode($contents, true);
 				$result = curl_exec($ch);
 				curl_close($ch);
 				echo $result . "\r\n";
-				$_Status = false;
+				//$_Status = false;
 			
 			echo "OK 1 LOOP";
 			}
