@@ -4,14 +4,14 @@ $access_token = 'SG3JBmTZEAbFxdexsK8JwxrPOle/+IFg/R3TmQKfVIUuJSrcRJOsffKPXXtrEy0
 
 // Get POST body content
 $content = file_get_contents('php://input');
+$Get_Status = file_get_contents('https://api.anto.io/channel/get/TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb/NodeMCU/Status');
 // Parse JSON
 $events = json_decode($content, true);
+$event_Status = json_decode($Get_Status, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
-	// Loop through each event
-	$th=mktime(gmdate("H")+7,gmdate("i"),gmdate("m"),gmdate("d"),gmdate("Y"));
-	$format="d/m/y H:i a"; 
-	$str=date($format,$th);
+	// Loop through each event	
+
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
@@ -21,10 +21,10 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			if($text == "Now"){
+			if($text == "GetStatus"){				
 			$messages = [
 			'type' => 'text',
-			'text' => $str
+			'text' => $event_Status['events']['value'];
 			];
 			}else{
 			$messages = [
