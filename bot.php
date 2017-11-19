@@ -21,9 +21,8 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			if($text == "GetStatus"){
-				foreach ($event_Status['events'] as $eventV2) {
-					if ($eventV2['result'] == 1 && $eventV2['value'] == 0) {
+			if($text == "GetStatus"){				
+					if ($event_Status['result'] == 1 && $event_Status['value'] == 0) {
 					$messages = [
 					'type' => 'text',
 					'text' => 'ปิด'//$event_Status['events']['value'];
@@ -35,7 +34,7 @@ if (!is_null($events['events'])) {
 					'text' => 'เปิด'//$event_Status['events']['value'];
 					];
 					}						
-				}			
+							
 			}else{
 			$messages = [
 				'type' => 'text',
