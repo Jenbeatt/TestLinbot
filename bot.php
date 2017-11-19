@@ -56,7 +56,7 @@ if (!is_null($events['events'])) {
 			}
 				
 			if(!$_Status == -1){
-				$Get_Status = file_get_contents('https://api.anto.io/channel/set/'. $Token_anto .'/'.$key.'/Status/'.$_Status);
+				//$Get_Status = file_get_contents('https://api.anto.io/channel/set/'. $Token_anto .'/'.$key.'/Status/'.$_Status);
 	
 					
 			}	
