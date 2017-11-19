@@ -67,7 +67,11 @@ if (!is_null($events['events'])) {
 			} 
 				
 			if (!$_Status == -1) {
-			   $Get_Status = file_get_contents($Url_Update.$_Status);					
+			   	$Get_Status = file_get_contents($Url_Update.$_Status);	
+				$messages = [
+				'type' => 'text',
+				'text' => 'เปลี่ยน'.$Url_Update.$_Status
+				];
 			}	
 			
 			// Make a POST Request to Messaging API to reply to sender
