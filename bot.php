@@ -28,12 +28,12 @@ if (!is_null($events['events'])) {
 					'type' => 'text',
 					'text' => 'ปิด'//$event_Status['events']['value'];
 					];
-					}
-					else {
+					} else {
 					$messages = [
 					'type' => 'text',
 					'text' => 'เปิด'
 					];
+					}
 			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 				$_Status = 1
 				$messages = [
