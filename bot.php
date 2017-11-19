@@ -36,9 +36,7 @@ while(true) {
 		$_Status= true;
 		}
 		$_Status=  false;
-	}
-
-// Loop through each event	
+		
 		if($_Status){
 					
 				$Userid = 'U8b1b238e78d5195aeed5c971023f548f';
@@ -68,6 +66,6 @@ while(true) {
 			echo "OK 1 LOOP";
 			}
 
-
+}
 echo "OK";
 
