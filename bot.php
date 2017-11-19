@@ -68,18 +68,17 @@ $event_Status = json_decode($contents, true);
 					'type' => 'text',
 					'text' => 'สถานะ '.$str 
 					];	
-					
+					$messages = [$messages,$messages_Status]
 				}
 				// Make a POST Request to Messaging API to reply to sender
 				
 				$url = 'https://api.line.me/v2/bot/message/reply';
+				
 				$data = [
-					'replyToken' => $replyToken,
-					if(count($messages_Status)>0){
-					'messages' => [$messages,$messages_Status],
-					}else{
+					'replyToken' => $replyToken,					
+					//'messages' => [$messages,$messages_Status],					
 					'messages' => [$messages],
-					}					
+									
 				];
 				$post = json_encode($data);
 				$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
