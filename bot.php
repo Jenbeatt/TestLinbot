@@ -47,13 +47,14 @@ if (!is_null($events['events'])) {
 				'text' => 'ปิด เรียบร้อย'
 				];
 					
-			}else {
+			}*/else {
 				$_Status = -1 
 				$messages = [
 				'type' => 'text',
 				'text' => 'ไม่โดนเงื่อนไขเหี้ยไรเลย'
 				];
-			}*/ 
+				 $Get_Status = file_get_contents('https://api.anto.io/channel/set/'. $Token_anto .'/'.$key.'/Status/'.$_Status);
+			} 
 				
 			/*if (!$_Status == -1) {
 			   $Get_Status = file_get_contents('https://api.anto.io/channel/set/'. $Token_anto .'/'.$key.'/Status/'.$_Status);
