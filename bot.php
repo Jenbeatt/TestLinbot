@@ -12,22 +12,18 @@ $Get_Status = file_get_contents('https://api.anto.io/channel/get/'. $Token_anto 
 $events = json_decode($content, true);
 $event_Status = json_decode($Get_Status, true);
 // Validate parsed JSON data
-function Check_Status()
-{
-	if($text == strtoupper("GETSTATUS") || $text == "สถานะ" ){				
-		if ($event_Status['result'] == "true") {
-			if ($event_Status['value'] == "0"){
-				$messages = [
-				'type' => 'text',
-				'text' => 'ปิด'//$event_Status['events']['value'];
-				];
-			}else{
-				$messages = [
-				'type' => 'text',
-				'text' => 'เปิด'//$event_Status['events']['value'];
-				];
-			}
-		}    
+function Check_Status($_xStaus){
+	if ($_xStaus == "0"){
+		$messages = [
+		'type' => 'text',
+		'text' => 'ปิด'//$event_Status['events']['value'];
+		];
+	}else{
+		$messages = [
+		'type' => 'text',
+		'text' => 'เปิด'//$event_Status['events']['value'];
+		];
+	}		   
 }
 
 if (!is_null($events['events'])) {
@@ -42,22 +38,11 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			/*if($text == strtoupper("GETSTATUS") || $text == "สถานะ" ){				
-					if ($event_Status['result'] == "true") {
-						if ($event_Status['value'] == "0"){
-							$messages = [
-							'type' => 'text',
-							'text' => 'ปิด'//$event_Status['events']['value'];
-							];
-						}else
-						{
-							$messages = [
-							'type' => 'text',
-							'text' => 'เปิด'//$event_Status['events']['value'];
-							];
-						}
-					}	*/
-				Check_Status();
+			if($text == strtoupper("GETSTATUS") || $text == "สถานะ" ){				
+				if ($event_Status['result'] == "true") {
+					Check_Status($event_Status['value']);
+				}	
+				
 							
 			}else if ($text == strtoupper("ON") || $text == "เปิด" ){
 				$_Status = 1
@@ -75,7 +60,15 @@ if (!is_null($events['events'])) {
 			if(!$_Status == -1){
 				$Get_Status = file_get_contents('https://api.anto.io/channel/set/'. $Token_anto .'/'.$key.'/Status/'.$_Status);
 				$event_Status = json_decode($Get_Status, true);
-				Check_Status();
+				if ($event_Status['result'] == "true") {
+					Check_Status($event_Status['value']);
+				}	
+			}else
+			{
+				$messages = [
+				'type'$_Status = 0 => 'text',
+				'text' => 'ไม่โนเงื่อนไขเหี่้ยออะไรเลย'
+				];
 			}
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
