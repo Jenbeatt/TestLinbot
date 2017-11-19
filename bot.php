@@ -29,16 +29,15 @@ function Check_Status($Result,$Value){
 			'text' => 'เปิด'
 			];
 		}
+	return true;
 	}else{
 		$messages = [
 		'type' => 'text',
 		'text' => ' Error Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
 		];
+	return false;
 	}	
-		$messages = [
-		'type' => 'text',
-		'text' => ' value'. $event_Status['value'] .' result ' . $event_Status['result']
-		];			
+				
 }
 
 if (!is_null($events['events'])) {
@@ -52,7 +51,11 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
 			if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){
-				Check_Status($event_Status['result'],$event_Status['value']);
+				
+				$messages = [
+				'type' => 'text',
+				'text' => 'สถานะ ส่ง = '.Check_Status($event_Status['result'],$event_Status['value']);
+				];	
 			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 				$_Status = 1;
 				$messages = [
