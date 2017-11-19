@@ -15,6 +15,7 @@ $Get_Status = file_get_contents($Url);
 // Parse JSON
 $events = json_decode($content, true);
 $event_Status = json_decode($Get_Status, true);
+$messages = ['type' => 'text','text' => 'Begin'];
 // Validate parsed JSON data
 function Check_Status($Result,$Value){
 	if ($Result == "true"){
@@ -23,20 +24,22 @@ function Check_Status($Result,$Value){
 			'type' => 'text',
 			'text' => 'ปิด'
 			];
+			return 0;	
 		} else {
 			$messages = [
 			'type' => 'text',
 			'text' => 'เปิด'
-			];
+			];			
+			return 1;
 		}
-	return true;
+	
 	}else{
 		$messages = [
 		'type' => 'text',
 		'text' => ' Error Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
 		];	
 	}	
-return false;			
+		return -1;
 }
 
 if (!is_null($events['events'])) {
@@ -49,8 +52,7 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
-			if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){
-				
+			if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){				
 				$messages = [
 				'type' => 'text',
 				'text' => 'สถานะ ส่ง = '.Check_Status($event_Status['result'],$event_Status['value'])
