@@ -3,6 +3,7 @@ $access_token = 'SG3JBmTZEAbFxdexsK8JwxrPOle/+IFg/R3TmQKfVIUuJSrcRJOsffKPXXtrEy0
 $Token_anto = 'TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb';
 $keys = 'NodeMCU';
 $Chanel = 'Status';
+$_Status = -1;
 //$access_token = 'iA00aKCsapdGJ2NY1g1W4XIqjaMCYUbVShtwKRb9psC';
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -26,7 +27,7 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
 			if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){
-				$_Status = -1;
+				
 					if ($event_Status['result'] == "true"){
 						if( $event_Status['value'] == "0") {
 						$messages = [
@@ -58,8 +59,7 @@ if (!is_null($events['events'])) {
 				'text' => 'ปิด เรียบร้อย'
 				];
 					
-			}else {
-				$_Status = -1;
+			}else {				
 				$messages = [
 				'type' => 'text',
 				'text' => 'ไม่โดนเงื่อนไขเหี้ยไรเลย'
