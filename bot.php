@@ -7,24 +7,27 @@ $_Status = -1;
 //$access_token = 'iA00aKCsapdGJ2NY1g1W4XIqjaMCYUbVShtwKRb9psC';
 // Get POST body content
 $content = file_get_contents('php://input');
+$events = json_decode($content, true);
 $Url = "https://api.anto.io/channel/get/".$Token_anto."/".$keys."/".$Chanel;
 $Url_Update = "https://api.anto.io/channel/set/".$Token_anto."/".$keys."/".$Chanel."/";
 $Get_Status = file_get_contents($Url);
+
+
 //$Get_Status = file_get_contents('https://api.anto.io/channel/get/TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb/NodeMCU/Status');
 
 // Parse JSON
-$events = json_decode($content, true);
+
 
 
 // Validate parsed JSON data
-function Check_Status($Result,$Value){
-	if ($Result == "true"){
-		if( $Value == "0") {		
+function Check_Status(){
+$event_Status = json_decode($Get_Status, true);
+	if ($event_Status['result'] == "true"){
+		if( $event_Status['value'] == "0") {		
 			return "ปิด";	
 		} else {				
 			return "เปิด";
-		}
-	
+		}	
 	}
 	return "เออเรอ";		
 }
@@ -42,7 +45,7 @@ function Check_Status($Result,$Value){
 				if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){				
 					$messages = [
 					'type' => 'text',
-					'text' => 'สถานะ '.Check_Status($event_Status['result'],$event_Status['value'])
+					'text' => 'สถานะ '.Check_Status()
 					];	
 				} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 					$_Status = 1;
@@ -64,18 +67,17 @@ function Check_Status($Result,$Value){
 				} 
 
 				if ($_Status > -1) {
-					$Get_Status = file_get_contents($Url_Update.$_Status);	
-					$event_Status = json_decode($Get_Status, true);
-					$messages = [$messages,
+					$Get_Status = file_get_contents($Url_Update.$_Status);						
+					$messages_Status = [
 					'type' => 'text',
-					'text' => 'สถานะ '.Check_Status($event_Status['result'],$event_Status['value'])
+					'text' => 'สถานะ '.Check_Status()
 					];	
 				}
 				// Make a POST Request to Messaging API to reply to sender
 				$url = 'https://api.line.me/v2/bot/message/reply';
 				$data = [
 					'replyToken' => $replyToken,
-					'messages' => [$messages],
+					'messages' => [$messages,$messages_Status],
 				];
 				$post = json_encode($data);
 				$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
