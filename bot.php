@@ -15,31 +15,18 @@ $Get_Status = file_get_contents($Url);
 // Parse JSON
 $events = json_decode($content, true);
 $event_Status = json_decode($Get_Status, true);
-$messages = ['type' => 'text','text' => 'Begin'];
+
 // Validate parsed JSON data
 function Check_Status($Result,$Value){
 	if ($Result == "true"){
-		if( $Value == "0") {
-			$messages = [
-			'type' => 'text',
-			'text' => 'ปิด'
-			];
-			return 0;	
-		} else {
-			$messages = [
-			'type' => 'text',
-			'text' => 'เปิด'
-			];			
-			return 1;
+		if( $Value == "0") {		
+			return "ปิด";	
+		} else {				
+			return "เปิด";
 		}
 	
-	}else{
-		$messages = [
-		'type' => 'text',
-		'text' => ' Error Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
-		];	
-	}	
-		return -1;
+	}
+	return "เออเรอ";		
 }
 
 if (!is_null($events['events'])) {
@@ -55,7 +42,7 @@ if (!is_null($events['events'])) {
 			if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){				
 				$messages = [
 				'type' => 'text',
-				'text' => 'สถานะ ส่ง = '.Check_Status($event_Status['result'],$event_Status['value'])
+				'text' => 'สถานะ '.Check_Status($event_Status['result'],$event_Status['value'])
 				];	
 			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 				$_Status = 1;
@@ -79,7 +66,10 @@ if (!is_null($events['events'])) {
 			if ($_Status > -1) {
 			   	$Get_Status = file_get_contents($Url_Update.$_Status);	
 				$event_Status = json_decode($Get_Status, true);
-				Check_Status($event_Status['result'],$event_Status['value']);
+				$messages = [
+				'type' => 'text',
+				'text' => 'สถานะ '.Check_Status($event_Status['result'],$event_Status['value'])
+				];	
 			}
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
