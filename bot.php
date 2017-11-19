@@ -64,11 +64,13 @@ $event_Status = json_decode($contents, true);
 
 				if ($_Status > -1) {
 									
-					$messages_Status = [
+					$messages = [
+					'type' => 'text',
+					'text' => Check_Status(file_get_contents($Url_Update.$_Status)). " เรียบร้อย"
 					'type' => 'text',
 					'text' => 'สถานะ '.Check_Status(file_get_contents($Url_Update.$_Status))
 					];	
-					$messages = [$messages,$messages_Status];
+					
 				}
 				// Make a POST Request to Messaging API to reply to sender
 				
