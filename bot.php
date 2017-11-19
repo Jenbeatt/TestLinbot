@@ -29,18 +29,18 @@ if (!is_null($events['events'])) {
 					'text' => 'ปิด'//$event_Status['events']['value'];
 					];
 					}
-					else{
+					else {
 					$messages = [
 					'type' => 'text',
 					'text' => 'เปิด'
 					];
-			}elseif ($text == strtoupper("ON") || $text == "เปิด" ){
+			}elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 				$_Status = 1
 				$messages = [
 				'type' => 'text',
 				'text' => 'เปิด เรียบร้อย'
 				];
-			}elseif ($text == strtoupper("OFF") || $text == "ปิด" ){
+			}elseif ($text == strtoupper("OFF") || $text == "ปิด" ) {
 				$_Status = 0				
 				$messages = [
 				'type' => 'text',
@@ -55,7 +55,7 @@ if (!is_null($events['events'])) {
 				];
 			}
 				
-			if(!$_Status == -1){
+			if (!$_Status == -1) {
 				//$Get_Status = file_get_contents('https://api.anto.io/channel/set/'. $Token_anto .'/'.$key.'/Status/'.$_Status);
 	
 					
