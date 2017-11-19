@@ -24,7 +24,7 @@ if (!is_null($events['events'])) {
 			if($text == "GetStatus"){				
 			$messages = [
 			'type' => 'text',
-			'text' => $event_Status['events']['value'];
+			'text' => '1'//$event_Status['events']['value'];
 			];
 			}else{
 			$messages = [
