@@ -43,13 +43,13 @@ $event_Status = json_decode($contents, true);
 					'type' => 'text',
 					'text' => 'สถานะ '.Check_Status(file_get_contents($Url))
 					];	
-				} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
+				} elseif (strtoupper($text) == "ON" || $text == "เปิด" ) {
 					$_Status = 1;
 					$messages = [
 					'type' => 'text',
 					'text' => 'เปิด เรียบร้อย'
 					];
-				} elseif ($text == strtoupper("OFF") || $text == "ปิด" ) {
+				} elseif (strtoupper($text)  == "OFF" || $text == "ปิด" ) {
 					$_Status = 0;		
 					$messages = [
 					'type' => 'text',
