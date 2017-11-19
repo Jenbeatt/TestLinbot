@@ -92,4 +92,4 @@ if (!is_null($events['events'])) {
 	}
 }
 echo "OK";
-echo "\n".$Url;
+echo "<br>".$Url;
