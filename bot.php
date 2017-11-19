@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 
 			// Build message to reply back
 			if($text == "GetStatus"){				
-					if ($event_Status['result'] == 1 && $event_Status['value'] == 0) {
+					if ($event_Status['result'] == "true" && $event_Status['value'] == "0") {
 					$messages = [
 					'type' => 'text',
 					'text' => 'ปิด'//$event_Status['events']['value'];
