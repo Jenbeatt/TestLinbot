@@ -61,10 +61,7 @@ $event_Status = json_decode($contents, true);
 					'text' => 'กรุณากรอกใหม่...'
 					];				
 				} 
-$messages_Status = [					
-					'type' => 'text',
-					'text' =>  ''
-					];	
+$messages_Status = [];	
 				if ($_Status > -1) {
 					$str = 	Check_Status(file_get_contents($Url_Update.$_Status));	
 					$messages_Status = [					
