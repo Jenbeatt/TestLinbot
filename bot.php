@@ -4,7 +4,7 @@ $access_token = 'SG3JBmTZEAbFxdexsK8JwxrPOle/+IFg/R3TmQKfVIUuJSrcRJOsffKPXXtrEy0
 
 // Get POST body content
 $content = file_get_contents('php://input');
-$Get_Status = file_get_contents('php://api.anto.io/channel/get/TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb/NodeMCU/Status');
+$Get_Status = file_get_contents('https://api.anto.io/channel/get/TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb/NodeMCU/Status');
 // Parse JSON
 $events = json_decode($content, true);
 $event_Status = json_decode($Get_Status, true);
@@ -21,11 +21,21 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			if($text == "GetStatus"){				
-			$messages = [
-			'type' => 'text',
-			'text' => '1'//$event_Status['events']['value'];
-			];
+			if($text == "GetStatus"){
+				foreach ($event_Status['events'] as $eventV2) {
+					if ($eventV2['result'] == 1 && $eventV2['value'] == 0) {
+					$messages = [
+					'type' => 'text',
+					'text' => 'ปิด'//$event_Status['events']['value'];
+					];
+					}
+					else{
+					$messages = [
+					'type' => 'text',
+					'text' => 'เปิด'//$event_Status['events']['value'];
+					];
+					}						
+				}			
 			}else{
 			$messages = [
 				'type' => 'text',
