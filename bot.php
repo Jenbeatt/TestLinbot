@@ -16,14 +16,15 @@ function Check_Status($_xStaus){
 	if ($_xStaus == "0"){
 		$messages = [
 		'type' => 'text',
-		'text' => 'ปิด'//$event_Status['events']['value'];
+		'text' => 'ปิด'
 		];
 	}else{
 		$messages = [
 		'type' => 'text',
-		'text' => 'เปิด'//$event_Status['events']['value'];
+		'text' => 'เปิด'
 		];
-	}		   
+	}
+	return True;
 }
 
 if (!is_null($events['events'])) {
@@ -38,13 +39,13 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			if($text == strtoupper("GETSTATUS") || $text == "สถานะ" ){				
+			if($text == strtoupper("GETSTATUS")){				
 				if ($event_Status['result'] == "true") {
 					Check_Status($event_Status['value']);
 				}	
 				
 							
-			}else if ($text == strtoupper("ON") || $text == "เปิด" ){
+			}else if ($text == strtoupper("ON") {
 				$_Status = 1
 				$messages = [
 				'type' => 'text',
