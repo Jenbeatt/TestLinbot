@@ -48,7 +48,7 @@ $event_Status = json_decode($contents, true);
 				$url = 'https://api.line.me/v2/bot/message/reply';
 				
 				$data = [
-					 "to": => ["1547339762"],				
+					 "to" => ["u0963c2f97eb6812ee92d1a2182cc3abd"],				
 					'messages' => [$messages],									
 				];
 				$post = json_encode($data);
