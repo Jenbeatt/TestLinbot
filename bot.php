@@ -61,13 +61,16 @@ $event_Status = json_decode($contents, true);
 					'text' => 'กรุณากรอกใหม่...'
 					];				
 				} 
-
+$messages_Status = [					
+					'type' => 'text',
+					'text' =>  ''
+					];	
 				if ($_Status > -1) {
 					$str = 	Check_Status(file_get_contents($Url_Update.$_Status))		
-					$messages = [$messages,[					
+					$messages_Status = [					
 					'type' => 'text',
-					'text' => 'สถานะ '.$str
-					]];	
+					'text' => 'สถานะ '.$str 
+					];	
 					
 				}
 				// Make a POST Request to Messaging API to reply to sender
@@ -75,7 +78,7 @@ $event_Status = json_decode($contents, true);
 				$url = 'https://api.line.me/v2/bot/message/reply';
 				$data = [
 					'replyToken' => $replyToken,
-					'messages' => [$messages],
+					'messages' => [$messages,$messages_Status],
 				];
 				$post = json_encode($data);
 				$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
