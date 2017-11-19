@@ -23,16 +23,18 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
 			if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){				
-					if ($event_Status['result'] == "true" && $event_Status['value'] == "0") {
-					$messages = [
-					'type' => 'text',
-					'text' => 'ปิด'//$event_Status['events']['value'];
-					];
-					} else {
-					$messages = [
-					'type' => 'text',
-					'text' => 'เปิด'
-					];
+					if ($event_Status['result'] == "true"){
+						if( $event_Status['value'] == "0") {
+						$messages = [
+						'type' => 'text',
+						'text' => 'ปิด value'.$event_Status['value']//$event_Status['events']['value'];
+						];
+						} else {
+						$messages = [
+						'type' => 'text',
+						'text' => 'เปิด value'.$event_Status['value']
+						];
+						}
 					}
 			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
 			
