@@ -5,7 +5,8 @@ $keys = 'NodeMCU';
 //$access_token = 'iA00aKCsapdGJ2NY1g1W4XIqjaMCYUbVShtwKRb9psC';
 // Get POST body content
 $content = file_get_contents('php://input');
-$Get_Status = file_get_contents('https://api.anto.io/channel/get/' . $Token_anto . '/' . $key . '/Status');
+$Url = 'https://api.anto.io/channel/get/' . $Token_anto . '/' . $key . '/Status'
+$Get_Status = file_get_contents($Url);
 //$Get_Status = file_get_contents('https://api.anto.io/channel/get/TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb/NodeMCU/Status');
 
 // Parse JSON
@@ -38,7 +39,7 @@ if (!is_null($events['events'])) {
 					}else{
 					$messages = [
 						'type' => 'text',
-						'text' => ' Error Getstatus value'. $event_Status['value'] .' result ' . $event_Status['result']
+						'text' => ' Error ' . $Url . 'Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
 						];
 					}
 			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
