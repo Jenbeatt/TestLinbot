@@ -66,7 +66,7 @@ $event_Status = json_decode($contents, true);
 					$str = 	Check_Status(file_get_contents($Url_Update.$_Status))		
 					$messages = [
 					'type' => 'text',
-					'text' => $str. " เรียบร้อย",
+					'text' => $str. " เรียบร้อย"][
 					'type' => 'text',
 					'text' => 'สถานะ '.$str
 					];	
