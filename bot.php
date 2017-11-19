@@ -34,26 +34,26 @@ if (!is_null($events['events'])) {
 					'text' => 'เปิด'
 					];
 					}
-			} /*elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
-				$_Status = 1
+			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
+			
 				$messages = [
 				'type' => 'text',
 				'text' => 'เปิด เรียบร้อย'
 				];
 			} elseif ($text == strtoupper("OFF") || $text == "ปิด" ) {
-				$_Status = 0				
+							
 				$messages = [
 				'type' => 'text',
 				'text' => 'ปิด เรียบร้อย'
 				];
 					
-			}*/else {
+			}else {
 				//$_Status = -1 
 				$messages = [
 				'type' => 'text',
 				'text' => 'ไม่โดนเงื่อนไขเหี้ยไรเลย'
 				];
-				 //$Get_Status = file_get_contents('https://api.anto.io/channel/set/'. $Token_anto .'/'.$key.'/Status/'.$_Status);
+				 $Get_Status = file_get_contents('https://api.anto.io/channel/set/'. $Token_anto .'/'.$key.'/Status/'.$_Status);
 			} 
 				
 			/*if (!$_Status == -1) {
