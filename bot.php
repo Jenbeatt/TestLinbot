@@ -66,7 +66,7 @@ $messages_Status = [
 					'text' =>  ''
 					];	
 				if ($_Status > -1) {
-					$str = 	Check_Status(file_get_contents($Url_Update.$_Status))		
+					$str = 	Check_Status(file_get_contents($Url_Update.$_Status));	
 					$messages_Status = [					
 					'type' => 'text',
 					'text' => 'สถานะ '.$str 
