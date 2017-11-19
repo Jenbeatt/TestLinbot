@@ -25,7 +25,8 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
-			if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){				
+			if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){
+				$_Status = -1;
 					if ($event_Status['result'] == "true"){
 						if( $event_Status['value'] == "0") {
 						$messages = [
@@ -67,7 +68,7 @@ if (!is_null($events['events'])) {
 			} 
 				
 			if (!$_Status == -1) {
-			   	$Get_Status = file_get_contents($Url_Update.$_Status);	
+			   	//$Get_Status = file_get_contents($Url_Update.$_Status);	
 				$messages = [
 				'type' => 'text',
 				'text' => 'เปลี่ยน'.$Url_Update.$_Status
