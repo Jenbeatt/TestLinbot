@@ -17,26 +17,28 @@ $events = json_decode($content, true);
 $event_Status = json_decode($Get_Status, true);
 // Validate parsed JSON data
 function Check_Status($Result,$Value){
-if ($Result == "true"){
-	if( $Value == "0") {
+	if ($Result == "true"){
+		if( $Value == "0") {
+			$messages = [
+			'type' => 'text',
+			'text' => 'ปิด'
+			];
+		} else {
+			$messages = [
+			'type' => 'text',
+			'text' => 'เปิด'
+			];
+		}
+	}else{
 		$messages = [
 		'type' => 'text',
-		'text' => 'ปิด'
+		'text' => ' Error Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
 		];
-	} else {
+	}	
 		$messages = [
 		'type' => 'text',
-		'text' => 'เปิด'
-		];
-	}
-}else{
-	$messages = [
-	'type' => 'text',
-	'text' => ' Error Not Resporn value'. $event_Status['value'] .' result ' . $event_Status['result']
-	];
-}
-	
-					
+		'text' => ' value'. $event_Status['value'] .' result ' . $event_Status['result']
+		];			
 }
 
 if (!is_null($events['events'])) {
