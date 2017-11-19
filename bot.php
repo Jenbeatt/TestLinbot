@@ -10,7 +10,7 @@ $Url = "https://api.anto.io/channel/get/".$Token_anto."/".$keys."/".$Chanel;
 $Url_Update = "https://api.anto.io/channel/set/".$Token_anto."/".$keys."/".$Chanel."/";
 $Get_Status = file_get_contents($Url);
 //$Get_Status = file_get_contents('https://api.anto.io/channel/get/TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb/NodeMCU/Status');
-$_Status = -1 ;
+
 // Parse JSON
 $events = json_decode($content, true);
 $event_Status = json_decode($Get_Status, true);
@@ -45,20 +45,20 @@ if (!is_null($events['events'])) {
 						];
 					}
 			} elseif ($text == strtoupper("ON") || $text == "เปิด" ) {
-				$_Status = 1 
+				$_Status = 1;
 				$messages = [
 				'type' => 'text',
 				'text' => 'เปิด เรียบร้อย'
 				];
 			} elseif ($text == strtoupper("OFF") || $text == "ปิด" ) {
-				$_Status = 0 			
+				$_Status = 0;		
 				$messages = [
 				'type' => 'text',
 				'text' => 'ปิด เรียบร้อย'
 				];
 					
 			}else {
-				$_Status = -1 
+				$_Status = -1;
 				$messages = [
 				'type' => 'text',
 				'text' => 'ไม่โดนเงื่อนไขเหี้ยไรเลย'
@@ -67,8 +67,7 @@ if (!is_null($events['events'])) {
 			} 
 				
 			if (!$_Status == -1) {
-			   $Get_Status = file_get_contents($Url_Update.$_Status);
-					
+			   $Get_Status = file_get_contents($Url_Update.$_Status);					
 			}	
 			
 			// Make a POST Request to Messaging API to reply to sender
