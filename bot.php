@@ -1,7 +1,7 @@
 <?php
 $access_token = 'SG3JBmTZEAbFxdexsK8JwxrPOle/+IFg/R3TmQKfVIUuJSrcRJOsffKPXXtrEy0q3HahfPxP4P4lxrFbFFWpC7fgOPtEAtxSoSChY3fTJbK2JQfaTqHOxh+EMffXSCLdBlzmkn5OVTtLk3lyD+7VkQdB04t89/1O/w1cDnyilFU=';
 $Token_anto = 'TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb';
-$key = 'NodeMCU';
+$keys = 'NodeMCU';
 //$access_token = 'iA00aKCsapdGJ2NY1g1W4XIqjaMCYUbVShtwKRb9psC';
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -34,13 +34,13 @@ if (!is_null($events['events'])) {
 					'type' => 'text',
 					'text' => 'เปิด'
 					];
-			}else if ($text == strtoupper("ON") || $text == "เปิด" ){
+			}elseif ($text == strtoupper("ON") || $text == "เปิด" ){
 				$_Status = 1
 				$messages = [
 				'type' => 'text',
 				'text' => 'เปิด เรียบร้อย'
 				];
-			}else if ($text == strtoupper("OFF") || $text == "ปิด" ){
+			}elseif ($text == strtoupper("OFF") || $text == "ปิด" ){
 				$_Status = 0				
 				$messages = [
 				'type' => 'text',
