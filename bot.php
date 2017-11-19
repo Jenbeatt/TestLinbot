@@ -6,7 +6,7 @@ $Chanel = 'Status'
 //$access_token = 'iA00aKCsapdGJ2NY1g1W4XIqjaMCYUbVShtwKRb9psC';
 // Get POST body content
 $content = file_get_contents('php://input');
-$Url = 'https://api.anto.io/channel/get/'.$Token_anto.'/'.$key.'/'.$Chanel
+$Url = 'https://api.anto.io/channel/get/'.$Token_anto.'/'.$keys.'/'.$Chanel
 $Get_Status = file_get_contents($Url);
 //$Get_Status = file_get_contents('https://api.anto.io/channel/get/TRJxeh7OfX0WY9dEY7IBdq62h4nwkpNDJu0I6wEb/NodeMCU/Status');
 
