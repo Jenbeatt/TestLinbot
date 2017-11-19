@@ -48,7 +48,7 @@ if (!is_null($events['events'])) {
 				];
 					
 			}*/else {
-				$_Status = -1 
+				//$_Status = -1 
 				$messages = [
 				'type' => 'text',
 				'text' => 'ไม่โดนเงื่อนไขเหี้ยไรเลย'
