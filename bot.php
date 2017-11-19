@@ -67,14 +67,17 @@ if (!is_null($events['events'])) {
 				
 			} 
 				
-			if (!$_Status == -1) {
-			   	//$Get_Status = file_get_contents($Url_Update.$_Status);	
+			if ($_Status > -1) {
+			   	/$Get_Status = file_get_contents($Url_Update.$_Status);	
 				$messages = [
 				'type' => 'text',
 				'text' => 'เปลี่ยน'.$Url_Update.$_Status
 				];
 			}	
-			
+			$messages = [
+				'type' => 'text',
+				'text' => 'Status = '.$_Status
+				];
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
