@@ -37,34 +37,12 @@ $event_Status = json_decode($contents, true);
 				$text = $event['message']['text'];
 				// Get replyToken
 				$replyToken = $event['replyToken'];
-				// Build message to reply back
-				if(strtoupper($text) == "GETSTATUS" || $text == "สถานะ"){				
+				// Build message to reply back						
+							
 					$messages = [
 					'type' => 'text',
-					'text' => 'สถานะ '.Check_Status(file_get_contents($Url))
-					];	
-				} elseif (strtoupper($text) == "ON" || $text == "เปิด" ) {
-					$_Status = 1;
-					$messages = [
-					'type' => 'text',
-					'text' => 'เปิด เรียบร้อย'
+					'text' => Check_Status(file_get_contents($Url)) . $replyToken
 					];
-				} elseif (strtoupper($text)  == "OFF" || $text == "ปิด" ) {
-					$_Status = 0;		
-					$messages = [
-					'type' => 'text',
-					'text' => 'ปิด เรียบร้อย'
-					];					
-				}else {				
-					$messages = [
-					'type' => 'text',
-					'text' => 'กรุณากรอกใหม่...'
-					];				
-				} 
-
-				if ($_Status > -1) {
-					Check_Status(file_get_contents($Url_Update.$_Status));
-				}
 				// Make a POST Request to Messaging API to reply to sender
 				
 				$url = 'https://api.line.me/v2/bot/message/reply';
