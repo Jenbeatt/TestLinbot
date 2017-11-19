@@ -14,17 +14,7 @@ $Get_Status = file_get_contents($Url);
 
 // Parse JSON
 $events = json_decode($content, true);
-function Void_loop(){
-	while(true) {
-		$event_Status = json_decode($Get_Status, true);
-		$Old = Check_Status($event_Status['result'],$event_Status['value']);	
-		if (strcmp($Now,$Old)){
-		$Now = $Old ;
-		return true;
-		}
-		return  false;
-	}
-}
+
 
 // Validate parsed JSON data
 function Check_Status($Result,$Value){
@@ -39,8 +29,8 @@ function Check_Status($Result,$Value){
 	return "เออเรอ";		
 }
 
-	if (!is_null($events['events']) || Void_loop() == true) {
 		// Loop through each event	
+		if(!is_null($events['events']) ){
 		foreach ($events['events'] as $event) {
 			// Reply only when message sent is in 'text' format
 			if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
@@ -76,7 +66,7 @@ function Check_Status($Result,$Value){
 				if ($_Status > -1) {
 					$Get_Status = file_get_contents($Url_Update.$_Status);	
 					$event_Status = json_decode($Get_Status, true);
-					$messages .= [
+					$messages = [$messages,
 					'type' => 'text',
 					'text' => 'สถานะ '.Check_Status($event_Status['result'],$event_Status['value'])
 					];	
